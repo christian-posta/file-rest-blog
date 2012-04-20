@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:cxf="http://camel.apache.org/schema/cxf"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+              http://camel.apache.org/schema/cxf http://camel.apache.org/schema/cxf/camel-cxf.xsd
+              http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd">
+
+    <cxf:rsServer id="rsServer" address="http://localhost:9090/route"
+                  serviceClass="org.fusesource.examples.cxf.jaxrs.CustomerService"/>
+
+    <bean id="customerServProcessor" class="com.fusesource.samples.CustomerServiceProcessor"/>
+
+    <camelContext id="camel" xmlns="http://camel.apache.org/schema/spring">
+        <route id="customerRoute">
+            <from uri="cxfrs:bean:rsServer"/>
+            <process ref="customerServProcessor"/>
+        </route>
+    </camelContext>
+
+
+</beans>
