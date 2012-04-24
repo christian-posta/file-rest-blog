@@ -7,15 +7,18 @@
               http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd">
 
     <cxf:rsServer id="rsServer" address="http://localhost:9090/route"
-                  serviceClass="org.fusesource.examples.cxf.jaxrs.CustomerService"/>
+                  serviceClass="com.fusesource.samples.CustomerServiceResource"/>
 
     <bean id="customerServProcessor" class="com.fusesource.samples.CustomerServiceProcessor"/>
 
+    <bean id="routeBuilder" class="com.fusesource.samples.CustomerServiceRoute"/>
     <camelContext id="camel" xmlns="http://camel.apache.org/schema/spring">
-        <route id="customerRoute">
-            <from uri="cxfrs:bean:rsServer"/>
-            <process ref="customerServProcessor"/>
-        </route>
+        <!--<route id="customerRoute">-->
+            <!--<from uri="cxfrs:bean:rsServer"/>-->
+            <!--<log message="Received a message: ${body}"/>-->
+            <!--<process ref="customerServProcessor"/>-->
+        <!--</route>-->
+        <routeBuilder ref="routeBuilder"/>
     </camelContext>
 
 

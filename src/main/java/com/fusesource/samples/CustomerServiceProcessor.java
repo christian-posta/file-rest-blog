@@ -4,6 +4,8 @@ import org.apache.camel.Exchange;
 import org.apache.camel.Message;
 import org.apache.camel.Processor;
 import org.apache.camel.component.cxf.common.message.CxfConstants;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.ws.rs.core.Response;
 import java.util.HashMap;
@@ -17,6 +19,7 @@ import java.util.Map;
  * To change this template use File | Settings | File Templates.
  */
 public class CustomerServiceProcessor implements Processor {
+    private static final Logger LOG = LoggerFactory.getLogger(CustomerServiceProcessor.class);
     private Map<Long, Customer> customers = new HashMap<Long, Customer>();
     private Map<Long, Order> orders = new HashMap<Long, Order>();
 
@@ -41,8 +44,8 @@ public class CustomerServiceProcessor implements Processor {
         Message inMessage = exchange.getIn();
         String operationName = inMessage.getHeader(CxfConstants.OPERATION_NAME, String.class);
         if ("getCustomer".equalsIgnoreCase(operationName)) {
-            String id = inMessage.getBody(String.class);
-            System.out.println("----invoking getCustomer, Customer id is: " + id);
+            String id = inMessage.getHeader("OrigId", String.class);
+            LOG.info("----invoking getCustomer, Customer id is: " + id);
 
             long idNumber = Long.parseLong(id);
 
@@ -54,7 +57,7 @@ public class CustomerServiceProcessor implements Processor {
                 exchange.getOut().setBody(response);
             }
 
-            exchange.getOut().setBody(c);
+//            exchange.getOut().setBody(c);
 
 
         }
