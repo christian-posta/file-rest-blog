@@ -13,11 +13,6 @@
 
     <bean id="routeBuilder" class="com.fusesource.samples.CustomerServiceRoute"/>
     <camelContext id="camel" xmlns="http://camel.apache.org/schema/spring">
-        <!--<route id="customerRoute">-->
-            <!--<from uri="cxfrs:bean:rsServer"/>-->
-            <!--<log message="Received a message: ${body}"/>-->
-            <!--<process ref="customerServProcessor"/>-->
-        <!--</route>-->
         <routeBuilder ref="routeBuilder"/>
     </camelContext>
 
