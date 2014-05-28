@@ -38,9 +38,20 @@
 
     <repositories>
         <repository>
-            <id>fusesource-releases</id>
-            <url>http://repo.fusesource.com/maven2</url>
+            <id>fusesource.releases</id>
             <name>FuseSource Release Repository</name>
+            <url>http://repository.jboss.org/nexus/content/repositories/fs-releases</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+        <repository>
+            <id>fusesource-ea.releases</id>
+            <name>FuseSource EA Release Repository</name>
+            <url>http://repository.jboss.org/nexus/content/repositories/ea</url>
             <releases>
                 <enabled>true</enabled>
             </releases>
@@ -49,12 +60,22 @@
             </snapshots>
         </repository>
     </repositories>
-
     <pluginRepositories>
         <pluginRepository>
-            <id>fusesource-releases</id>
-            <url>http://repo.fusesource.com/maven2</url>
+            <id>fusesource.releases</id>
             <name>FuseSource Release Repository</name>
+            <url>http://repository.jboss.org/nexus/content/repositories/fs-releases</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </pluginRepository>
+        <pluginRepository>
+            <id>fusesource-ea.releases</id>
+            <name>FuseSource EA Release Repository</name>
+            <url>http://repository.jboss.org/nexus/content/repositories/ea</url>
             <releases>
                 <enabled>true</enabled>
             </releases>
