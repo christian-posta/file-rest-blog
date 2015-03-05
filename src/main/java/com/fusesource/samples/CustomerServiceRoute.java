@@ -19,7 +19,7 @@ public class CustomerServiceRoute extends RouteBuilder {
 //        from("cxfrs:bean:rsServer")
         from("cxfrs://http://localhost:9090/route?resourceClasses=com.fusesource.samples.CustomerServiceResource")
                 .setHeader(Exchange.FILE_NAME, simple("test-${body}.xml"))
-                .pollEnrich("file:src/data?noop=true", 1000, new CustomerEnricher())
+//                .pollEnrich("file:src/data?noop=true", 1000, new CustomerEnricher())
                 .process(new CustomerServiceProcessor())
                 .log("Here is the message that was enriched: ${body}");
     }

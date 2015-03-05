@@ -44,7 +44,7 @@ public class CustomerServiceProcessor implements Processor {
         Message inMessage = exchange.getIn();
         String operationName = inMessage.getHeader(CxfConstants.OPERATION_NAME, String.class);
         if ("getCustomer".equalsIgnoreCase(operationName)) {
-            String id = inMessage.getHeader("OrigId", String.class);
+            String id = inMessage.getBody(String.class);
             LOG.info("----invoking getCustomer, Customer id is: " + id);
 
             long idNumber = Long.parseLong(id);
@@ -57,7 +57,7 @@ public class CustomerServiceProcessor implements Processor {
                 exchange.getOut().setBody(response);
             }
 
-//            exchange.getOut().setBody(c);
+            exchange.getOut().setBody(c);
 
 
         }
